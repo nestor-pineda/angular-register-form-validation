@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { IUserRegister } from './models/form.interface';
+import { MustMatch } from './validators/match.validator';
 
 @Component({
   selector: 'app-formulario',
@@ -17,11 +18,23 @@ export class FormularioComponent implements OnInit {
   constructor(private formBuilder: FormBuilder) {
     // Nuestro formulario - sin campos por defecto
     // Podemos meter valores por defecto en las comillas
-    this.registerForm = this.formBuilder.group({
-      name: ['', [Validators.required, Validators.maxLength(20)]],
-      password: ['', [Validators.required, Validators.maxLength(20)]],
-      repassword: ['', [Validators.required, Validators.maxLength(20)]],
-    });
+    this.registerForm = this.formBuilder.group(
+      {
+        name: ['', [Validators.required, Validators.maxLength(20)]],
+        password: [
+          '',
+          [
+            Validators.required,
+            Validators.maxLength(20),
+            Validators.pattern(''),
+          ],
+        ],
+        repassword: ['', [Validators.required, Validators.maxLength(20)]],
+      },
+      {
+        validator: MustMatch('password', 'repassword'),
+      }
+    );
   }
   // El OnInit -> Vacío
   ngOnInit() {
