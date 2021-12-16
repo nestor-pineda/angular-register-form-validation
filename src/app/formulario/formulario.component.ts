@@ -20,16 +20,30 @@ export class FormularioComponent implements OnInit {
     // Podemos meter valores por defecto en las comillas
     this.registerForm = this.formBuilder.group(
       {
-        name: ['', [Validators.required, Validators.maxLength(20)]],
+        name: [
+          '',
+          [
+            Validators.required,
+            Validators.maxLength(20),
+            Validators.pattern('[a-zA-Z]*'),
+          ],
+        ],
         password: [
           '',
           [
             Validators.required,
             Validators.maxLength(20),
-            Validators.pattern(''),
+            Validators.pattern('[a-zA-Z0-9]*'),
           ],
         ],
-        repassword: ['', [Validators.required, Validators.maxLength(20)]],
+        repassword: [
+          '',
+          [
+            Validators.required,
+            Validators.maxLength(20),
+            Validators.pattern('[a-zA-Z0-9]*'),
+          ],
+        ],
       },
       {
         validator: MustMatch('password', 'repassword'),
