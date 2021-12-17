@@ -1,4 +1,8 @@
-# Formulario
+# Register form with validation
+
+![Placeholder Image](preview.gif)
+
+ I have created this signup form with validation in Angular. It's ready to connect with the backend and send the information to request access.
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.1.1.
 
