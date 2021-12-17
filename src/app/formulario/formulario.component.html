@@ -1,51 +1,90 @@
-<h2>Formulario de Registro:</h2>
-<!-- formGroup es el nombre de nuestro formFroup del .ts -->
-<form novalidate (ngSubmit)="onSubmit()" [formGroup]="registerForm">
-  <!-- Fieldset del primer campo - name -->
-  <fieldset>
-    <label for="name">Nombre:</label>
-    <input type="text" id="name" formControlName="name" />
-    <!-- Si el campo name es invalido / ha sido tocado / submitted = true -->
-    <div
-      *ngIf="
-        !registerForm.get('name')?.valid &&
-        (registerForm.get('name')?.dirty || submitted)
-      "
+<div class="section">
+  <div class="login">
+    <div class="heading"><h2>REGISTER FORM</h2></div>
+    <!-- formGroup es el nombre de nuestro formFroup del .ts -->
+    <form
+      autocomplete="off"
+      novalidate
+      (ngSubmit)="onSubmit()"
+      [formGroup]="registerForm"
     >
-      <p>Has introducido mal tu nombre</p>
-    </div>
-  </fieldset>
+      <!-- Fieldset del primer campo - name -->
+      <fieldset>
+        <input
+          placeholder="Name"
+          type="text"
+          id="name"
+          formControlName="name"
+        />
+        <!-- Si el campo name es invalido / ha sido tocado / submitted = true -->
+        <div
+          *ngIf="
+            !registerForm.get('name')?.valid &&
+            (registerForm.get('name')?.dirty || submitted)
+          "
+        >
+          <p class="error">Has introducido mal tu nombre</p>
+        </div>
+      </fieldset>
 
-  <!-- Fieldset del segundo campo - password -->
-  <fieldset>
-    <label for="password">Password:</label>
-    <input type="password" id="password" formControlName="password" />
-    <!-- Si el campo password es invalido / ha sido password / submitted = true -->
-    <div
-      *ngIf="
-        !registerForm.get('password')?.valid &&
-        (registerForm.get('password')?.dirty || submitted)
-      "
-    >
-      <p>Has introducido mal tu contraseña</p>
-    </div>
-  </fieldset>
+      <fieldset>
+        <input
+          placeholder="Email"
+          type="text"
+          id="email"
+          formControlName="email"
+        />
+        <!-- Si el campo name es invalido / ha sido tocado / submitted = true -->
+        <div
+          *ngIf="
+            !registerForm.get('email')?.valid &&
+            (registerForm.get('email')?.dirty || submitted)
+          "
+        >
+          <p class="error">Has introducido mal tu email</p>
+        </div>
+      </fieldset>
 
-  <!-- Fieldset del segundo campo - repeatPassword -->
-  <fieldset>
-    <label for="repassword">Repeat password:</label>
-    <input type="password" id="repassword" formControlName="repassword" />
-    <!-- Si el campo repeatPassword es invalido / ha sido password / submitted = true -->
-    <div
-      *ngIf="
-        !registerForm.get('repassword')?.valid &&
-        (registerForm.get('repassword')?.dirty || submitted)
-      "
-    >
-      <p>Tu contraseña no coincide</p>
-    </div>
-  </fieldset>
+      <!-- Fieldset del segundo campo - password -->
+      <fieldset>
+        <input
+          placeholder="Password"
+          type="password"
+          id="password"
+          formControlName="password"
+        />
+        <!-- Si el campo password es invalido / ha sido password / submitted = true -->
+        <div
+          *ngIf="
+            !registerForm.get('password')?.valid &&
+            (registerForm.get('password')?.dirty || submitted)
+          "
+        >
+          <p class="error">Has introducido mal tu contraseña</p>
+        </div>
+      </fieldset>
 
-  <!-- Botón deshabilitado hasta que el formulario sea valid -->
-  <button type="submit" [disabled]="!registerForm.valid">Submit</button>
-</form>
+      <!-- Fieldset del segundo campo - repeatPassword -->
+      <fieldset>
+        <input
+          placeholder="Repeat password"
+          type="password"
+          id="repassword"
+          formControlName="repassword"
+        />
+        <!-- Si el campo repeatPassword es invalido / ha sido password / submitted = true -->
+        <div
+          *ngIf="
+            !registerForm.get('repassword')?.valid &&
+            (registerForm.get('repassword')?.dirty || submitted)
+          "
+        >
+          <p class="error">Tu contraseña no coincide</p>
+        </div>
+      </fieldset>
+
+      <!-- Botón deshabilitado hasta que el formulario sea valid -->
+      <button type="submit" [disabled]="!registerForm.valid">Submit</button>
+    </form>
+  </div>
+</div>

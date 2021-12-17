@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { IUserRegister } from './models/form.interface';
-import { MustMatch } from './validators/match.validator';
+import { MustMatch } from './validators/match.validator'; // Validación
 
 @Component({
   selector: 'app-formulario',
@@ -11,7 +11,6 @@ import { MustMatch } from './validators/match.validator';
 export class FormularioComponent implements OnInit {
   // Incialización del formulario
   public registerForm: FormGroup;
-
   // variable submitted a false
   public submitted: boolean = false;
   // Inicializamos FormBuilder en el constructor
@@ -26,6 +25,14 @@ export class FormularioComponent implements OnInit {
             Validators.required,
             Validators.maxLength(20),
             Validators.pattern('[a-zA-Z]*'),
+          ],
+        ],
+        email: [
+          '',
+          [
+            Validators.required,
+            Validators.email,
+            Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{1,}$'),
           ],
         ],
         password: [
@@ -64,6 +71,7 @@ export class FormularioComponent implements OnInit {
       // Creamos un Usuario y lo emitimos
       const user: IUserRegister = {
         name: this.registerForm.get('name')?.value,
+        email: this.registerForm.get('email')?.value,
         password: this.registerForm.get('password')?.value,
         repassword: this.registerForm.get('repassword')?.value,
       };
